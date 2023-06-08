@@ -1,9 +1,9 @@
-export class Shop {
-    constructor() {
+export class Shop2 {
+    constructor(Prekes_kodas, Prekes_pavadinimas ) {
         this.shopName = "Pilnas Bakas";
         this.currency = "$";
-        this.itemId = "1";
-        this.itemName = "Hubba Bubba extra long exstra strong flavor gum";
+        this.itemId = Prekes_kodas;
+        this.itemName = Prekes_pavadinimas;
         this.itemBuyCost = 1;
         this.itemSell = 2;
         this.itemQuantity = 0;
@@ -12,7 +12,7 @@ export class Shop {
         this.itemdestroyed = 0;
         this.itemProfitUnit = this.itemSell - this.itemBuyCost;
         this.itemProfitAll = 0;
-        this.itembalance = 0;
+        
 
 
     }
@@ -67,7 +67,7 @@ export class Shop {
         if (this.itemQuantity < quantity) {
             return 'Deja sios prekes tiek nera, likutis yra ' + this.itemQuantity + ' vnt';
         }
-        this.itemdestroyed += quantity;
+        this.itemdestroyed += this.itemQuantity - quantity;
         this.itemQuantity -= quantity;
 
         return 'Isimta is prekybos ' + quantity + ' vnt. Liko prekyboje ' + this.itemQuantity + ' vnt';
@@ -75,14 +75,14 @@ export class Shop {
     }
 
     profit() {
-        this.itemProfitAll += this.itemSoldQuantity * this.itemProfitUnit;
-         return this.itemProfitAll
-    
+        this.itemProfitAll += this.itemSoldQuantity + this.itemProfitUnit;
+        
+
     }
 
-    balance() {
-        this.itembalance += this.itemProfitAll - (this.itemQuantity + this.itemdestroyed) * this.itemBuyCost 
-        return this.itembalance
-    }
+    // balance() {
+    //     this.itembalance = this.itemProfitAll - (this.itemQuantity + this.itemdestroyed) * this.itemBuyCost 
+    //     return this.itembalance
+    // }
 
 }
